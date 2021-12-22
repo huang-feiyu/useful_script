@@ -7,7 +7,7 @@ import re
 import json
 from urllib.request import urlopen
 
-USERNAME = '36542'
+USERNAME = input('输入Windows User name: ')
 
 def get_url():
     """获取壁纸url
