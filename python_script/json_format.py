@@ -5,6 +5,9 @@ date: 21.12.22
 description: 给定json字符串数据，格式化输出
 """
 import json
+from pygments import highlight
+from pygments.formatters.terminal256 import Terminal256Formatter
+from pygments.lexers.web import JsonLexer
 
 def print_json(data):
     """格式化输出函数，返回字典
@@ -12,7 +15,13 @@ def print_json(data):
     # raw data转换为字典
     js_dic = json.loads(data)
     # 格式化输出
-    print(json.dumps(js_dic, sort_keys=True, indent=4, separators=(',', ':')))
+    raw_json = json.dumps(js_dic, sort_keys=True, indent=4, separators=(',', ':'))
+    colorful = highlight(
+        raw_json,
+        lexer=JsonLexer(),
+        formatter=Terminal256Formatter(),
+    )
+    print(colorful)
     return js_dic
 
 def main():
@@ -20,7 +29,7 @@ def main():
     """
     temp_str = input("1. 测试\n2. raw data\n3. json文件绝对路径\n")
     if temp_str == '1':
-        test_file = open('./resources/test.json', mode = 'r')
+        test_file = open('./resources/test.json', mode='r')
         raw_data = test_file.read()
         print_json(raw_data)
         test_file.close()
@@ -29,14 +38,13 @@ def main():
         print_json(raw_data)
     elif temp_str == '3':
         file_absolute_path = input("给定绝对路径:\n")
-        rd_file = open(file_absolute_path, mode = 'r')
+        rd_file = open(file_absolute_path, mode='r')
         raw_data = rd_file.read()
         print_json(raw_data)
         rd_file.close()
     else:
         print("再来一遍")
         main()
-
 
 if __name__ == '__main__':
     main()
