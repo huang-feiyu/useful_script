@@ -6,4 +6,5 @@
   * [bing_img_fetch.py](./python_script/bing_img_fetch.py): 获取每天bing壁纸，并且更新windows terminal settings
     * 可以修改脚本以下载图片
   * [json_format.py](./python_script/json_format.py): 格式化输出json
+  * [PL_font_change.py](.python_script/PL_font_change.py): 更换 Terminal 字体
 
